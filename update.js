@@ -263,6 +263,9 @@ op.reasons=[];
 op.hide_reasons=[];
 function check_show(op) {
     var bb=$bu_.get_browser(op.override_ua);
+    if(op.banned && op.banned[bb.n]){
+		bb.is_supported = false;
+	}
     op.is_below_required = required[bb.n] && $bu_.less(bb.fullv,required[bb.n])===1; //bb.fullv<required
     if (bb.other!==false)
         op.hide_reasons.push("is other browser:" + bb.other)
